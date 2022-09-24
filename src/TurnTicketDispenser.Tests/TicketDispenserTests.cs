@@ -1,10 +1,19 @@
-﻿using NUnit.Framework;
+﻿using System.Reflection;
+using NUnit.Framework;
 
 namespace TDDMicroExercises.TurnTicketDispenser.Tests
 {
     [TestFixture]
     public class TicketDispenserTests
     {
+        [SetUp]
+        public void ResetState()
+        {
+            typeof(TurnNumberSequence)
+                .GetField("_singleton", BindingFlags.Static | BindingFlags.NonPublic)
+                ?.SetValue(null, null);
+        }
+        
         [Test]
         public void FirstThreeTickets()
         {
