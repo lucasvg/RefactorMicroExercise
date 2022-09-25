@@ -5,25 +5,21 @@ namespace TDDMicroExercises.TelemetrySystem
 {
     public class TelemetryDiagnosticControls
     {
-        private const string DiagnosticChannelConnectionString = "*111#";
-        
-        private readonly TelemetryClient _telemetryClient;
-        private string _diagnosticInfo = string.Empty;
+        const string DiagnosticChannelConnectionString = "*111#";
+
+        readonly TelemetryClient _telemetryClient;
 
         public TelemetryDiagnosticControls()
         {
             _telemetryClient = new TelemetryClient();
+            DiagnosticInfo   = string.Empty;
         }
 
-        public string DiagnosticInfo
-        {
-            get { return _diagnosticInfo; }
-            set { _diagnosticInfo = value; }
-        }
+        public string DiagnosticInfo { get; private set; }
 
         public void CheckTransmission()
         {
-            _diagnosticInfo = string.Empty;
+            DiagnosticInfo = string.Empty;
 
             _telemetryClient.Disconnect();
 
@@ -40,7 +36,7 @@ namespace TDDMicroExercises.TelemetrySystem
             }
 
             _telemetryClient.Send(TelemetryClient.DiagnosticMessage);
-            _diagnosticInfo = _telemetryClient.Receive();
+            DiagnosticInfo = _telemetryClient.Receive();
         }
     }
 }
