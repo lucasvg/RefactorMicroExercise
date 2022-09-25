@@ -5,7 +5,7 @@ namespace TDDMicroExercises.TelemetrySystem
 {
     public class TelemetryDiagnosticControls
     {
-        const string DiagnosticChannelConnectionString = "*111#";
+        public const string DiagnosticChannelConnectionString = "*111#";
 
         readonly ITelemetryClient _telemetryClient;
 
