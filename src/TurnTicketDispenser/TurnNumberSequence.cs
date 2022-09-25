@@ -12,6 +12,10 @@ namespace TDDMicroExercises.TurnTicketDispenser
 
         int _turnNumber = 0;
 
-        public int GetNextTurnNumber() => _turnNumber++;
+        public int GetNextTurnNumber()
+        {
+            lock (this) // since the ticket sequence can be called from multiple places, it has to be thread safe 
+                return _turnNumber++;
+        }
     }
 }
