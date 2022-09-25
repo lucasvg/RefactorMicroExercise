@@ -1,4 +1,4 @@
-# RefactorMircoExcercise
+# RefactorMicroExercise
 
 ## Timing
 You can count about 90 minutes per exercise: you can organize a 90 minutes implementation with just one exercise, a 90+90 minutes implementation with 2 exercises.
