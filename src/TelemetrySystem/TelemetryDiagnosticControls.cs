@@ -7,11 +7,11 @@ namespace TDDMicroExercises.TelemetrySystem
     {
         const string DiagnosticChannelConnectionString = "*111#";
 
-        readonly TelemetryClient _telemetryClient;
+        readonly ITelemetryClient _telemetryClient;
 
-        public TelemetryDiagnosticControls()
+        public TelemetryDiagnosticControls(ITelemetryClient telemetryClient)
         {
-            _telemetryClient = new TelemetryClient();
+            _telemetryClient = telemetryClient;
             DiagnosticInfo   = string.Empty;
         }
 
