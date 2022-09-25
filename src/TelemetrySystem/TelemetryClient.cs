@@ -2,7 +2,7 @@ using System;
 
 namespace TDDMicroExercises.TelemetrySystem
 {
-	public class TelemetryClient
+	public class TelemetryClient : ITelemetryClient
 	{
         //
         // The communication with the server is simulated in this implementation.
@@ -11,16 +11,12 @@ namespace TDDMicroExercises.TelemetrySystem
 
 		public const string DiagnosticMessage = "AT#UD";
 
-		private bool _onlineStatus;
-		private bool _diagnosticMessageJustSent = false;
+		bool _diagnosticMessageJustSent = false;
 
-        private readonly Random _connectionEventsSimulator = new Random();
-        private readonly Random _randomMessageSimulator = new Random();
+		readonly Random _connectionEventsSimulator = new Random();
+		readonly Random _randomMessageSimulator    = new Random();
 
-		public bool OnlineStatus
-		{
-			get { return _onlineStatus; }
-		}
+		public bool OnlineStatus { get; private set; }
 
 		public void Connect(string telemetryServerConnectionString)
 		{
@@ -32,14 +28,10 @@ namespace TDDMicroExercises.TelemetrySystem
 			// Fake the connection with 20% chances of success
 			bool success = _connectionEventsSimulator.Next(1, 10) <= 2;
 
-			_onlineStatus = success;
-
+			OnlineStatus = success;
 		}
 
-		public void Disconnect()
-		{
-			_onlineStatus = false;
-		}
+		public void Disconnect() => OnlineStatus = false;
 
 		public void Send(string message)
 		{

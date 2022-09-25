@@ -8,7 +8,7 @@ namespace TDDMicroExercises.TelemetrySystem.SomeDependencies
 
 		public TelemetryDiagnosticControlsClient3()
 		{
-			var teleDiagnostic = new TelemetryDiagnosticControls();
+			var teleDiagnostic = new TelemetryDiagnosticControls(new TelemetryClient());
 
 			teleDiagnostic.CheckTransmission();
 
